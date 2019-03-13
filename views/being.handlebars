@@ -1,0 +1,131 @@
+<div class="card" style="margin: 25px 0;">
+    <h5 class="card-header">Create a new being</h5>
+    <div class="card-body">
+        <form id="form-being" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="being_fname">First Name<span class="required">*</span></label>
+                    <input id="being_fname" name="being_fname" class="form-control" type="text" placeholder="Han" maxlength="100" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="being_lname">Last Name</label>
+                    <input id="being_lname" name="being_lname" class="form-control" type="text" placeholder="Solo" maxlength="100">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="being_race">Race<span class="required">*</span></label>
+                    <input id="being_race" name="being_race" class="form-control" type="text" placeholder="Human" maxlength="100" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="being_homeworld">Homeworld<span class="required">*</span></label>
+                    <select id="being_homeworld" name="being_homeworld" class="form-control">
+                        <option value="NULL">Unknown</option>
+                        {{#each planet}}
+                            <option value="{{planetid}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="being_forcesense">Force Sensitive<span class="required">*</span></label>
+                    <select id="being_forcesense" name="being_forcesense" class="form-control">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Being</button>
+        </form>
+    </div>
+</div>
+<div class="card" style="margin: 50px 0 25px;">
+    <h5 class="card-header">
+        Filter by Being First Name
+    </h5>
+    <div class="card-body">
+        <form id="form_filter" onsubmit="filterBeingName();">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="filter_fname">First Name<span class="required">*</span></label>
+                    <input id="filter_fname" name="fname" class="form-control" type="text" placeholder="Han" maxlength="100" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Filter Being</button>
+        </form>
+    </div>
+</div>
+<h3>Current Beings</h3>
+<p>
+    First Name Filters: <span class="current-filters"></span>
+    <button class="btn btn-sm btn-outline-primary" onclick="clearFilters();">Clear Filters</button>
+</p>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Race</th>
+            <th scope="col">Home World</th>
+            <th scope="col">Force Sensitive</th>
+            <th scope="col"></th> <!-- Edit Btn -->
+            <th scope="col"></th> <!-- Delete Btn -->
+        </tr>
+    </thead>
+    <tbody>
+        {{#each being}}
+            <tr id="being_{{beingid}}" data-beingid="{{beingid}}">
+                <td>
+                    <span class="view-layer">{{fname}}</span>
+                    <span class="edit-layer hidden">
+                        <input class="form-control" type="text" name="being_fname" value="{{fname}}" required>
+                    </span>
+                </td>
+                <td>
+                    <span class="view-layer">{{lname}}</span>
+                    <span class="edit-layer hidden">
+                        <input class="form-control" type="text" name="being_lname" value="{{lname}}">
+                    </span>
+                </td>
+                <td>
+                    <span class="view-layer">{{race}}</span>
+                    <span class="edit-layer hidden">
+                        <input class="form-control" type="text" name="being_race" value="{{race}}" required>
+                    </span>
+                </td>
+                <td>
+                    <span class="view-layer">{{homeworld_string}}</span>
+                    <span class="edit-layer hidden">
+                        <select class="form-control pl" name="being_homeworld">
+                            <option value="NULL">Unknown</option>
+                            {{#each ../planet}}
+                            <option value='{{planetid}}' {{isSelected planetid ../homeworld}}>
+                                {{name}}
+                            </option>
+                            {{/each}}
+                        </select>
+                    </span>
+                </td>
+                <td>
+                    <span class="view-layer">{{force_sensitive_string}}</span>
+                    <span class="edit-layer hidden">
+                        <select class="form-control fs" name="being_forcesense">
+                            <option value="0" {{isSelected 0 force_sensitive}}>No</option>
+                            <option value="1" {{isSelected 1 force_sensitive}}>Yes</option>
+                        </select>
+                    </span>
+                </td>
+                <td>
+                    <span class="view-layer">
+                        <button onclick="editBeing('{{beingid}}')" class="btn btn-sm btn-outline-primary edit">Edit</button>
+                    </span>
+                    <span class="edit-layer hidden">
+                        <button onclick="updateBeing('{{beingid}}')" class="btn btn-sm btn-outline-primary save">Save</button>
+                    </span>
+                </td>
+                <td>
+                    <button onclick="deleteBeing('{{beingid}}')" class="btn btn-sm btn-outline-danger">Delete</button>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

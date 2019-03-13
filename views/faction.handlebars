@@ -1,0 +1,81 @@
+<div class="card" style="margin: 25px 0;">
+    <h5 class="card-header">Create a new Faction</h5>
+    <div class="card-body">
+        <form id="form-faction" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="faction_name">Faction Name<span class="required">*</span></label>
+                    <input id="faction_name" name="faction_name" class="form-control" type="text" placeholder="Rebel Alliance" maxlength="100">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="faction_numbmembers">Faction Members<span class="required">*</span></label>
+                    <input id="faction_numbmembers" name="faction_numMembers" class="form-control" type="number" placeholder="500" maxlength="100">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="faction_leader">Faction Leader<span class="required">*</span></label>
+                    <select id="faction_leader" name="faction_leader" class="form-control">
+                        <option value="NULL">Unknown</option>
+                        {{#each being}}
+                        <option value="{{beingid}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Faction</button>
+        </form>
+    </div>
+</div>
+<h3>Factions:</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Faction Name</th>
+            <th scope="col">Faction Members</th>
+            <th scope="col">Faction Leader</th>
+            <th scope="col"></th> <!-- Edit Btn -->
+            <th scope="col"></th> <!-- Delete Btn -->
+        </tr>
+    </thead>
+    <tbody>
+    {{#each faction}}
+        <tr id="faction_{{factionid}}" data-factionid="{{factionid}}">
+            <td>
+                <span class="view-layer">{{name}}</span>
+                <span class="edit-layer hidden">
+                    <input class="form-control" type="text" name="faction_name" value="{{name}}" required>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{numMembers_view}}</span>
+                <span class="edit-layer hidden">
+                    <input class="form-control" type="number" name="faction_numMembers" value="{{numMembers}}">
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{leader_string}}</span>
+                <span class="edit-layer hidden">
+                    <select class="form-control pl" name="faction_leader">
+                        <option value="NULL">Unknown</option>
+                        {{#each ../being}}
+                        <option value='{{beingid}}' {{isSelected beingid ../leader}}>
+                            {{name}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">
+                    <button onclick="editFaction('{{factionid}}')" class="btn btn-sm btn-outline-primary edit">Edit</button>
+                </span>
+                <span class="edit-layer hidden">
+                    <button onclick="updateFaction('{{factionid}}')" class="btn btn-sm btn-outline-primary save">Save</button>
+                </span>
+            </td>
+            <td>
+                <button onclick="deleteFaction('{{factionid}}')" class="btn btn-sm btn-outline-danger">Delete</button>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

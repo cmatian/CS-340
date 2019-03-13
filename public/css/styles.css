@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.form-control::-webkit-input-placeholder {
+    color: #c8c8c8;
+    opacity: 1;
+}
+
+.view-layer.hidden,
+.edit-layer.hidden {
+    display: none;
+}
+
+span.required {
+    color: red;
+}
+
+span.current-filters {
+    font-weight: bold;
+    color: green;
+}

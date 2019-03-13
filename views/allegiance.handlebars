@@ -1,0 +1,73 @@
+<div class="card" style="margin: 25px 0;">
+    <h5 class="card-header">Create a new Allegiance</h5>
+    <div class="card-body">
+        <form id="allegiance-form" method="post" onsubmit="handleSubmit();">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="allegiance-being">Being<span class="required">*</span></label>
+                    <select id="allegiance-being" name="allegiance_beingid" class="form-control">
+                        {{#each being}}
+                            <option value="{{beingid}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="allegiance-faction">Faction<span class="required">*</span></label>
+                    <select id="allegiance-faction" name="allegiance_factionid" class="form-control">
+                        {{#each faction}}
+                            <option value="{{factionid}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Allegiance</button>
+        </form>
+    </div>
+</div>
+
+<h3>Existing Factions:</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Being</th>
+            <th scope="col">Faction</th>
+            <th scope="col"></th> <!-- Edit Btn -->
+            <th scope="col"></th> <!-- Delete Btn -->
+        </tr>
+    </thead>
+    <tbody>
+        {{#each allegiance}}
+            <tr id="{{beingid}}{{factionid}}" data-being="{{beingid}}" data-faction="{{factionid}}">
+                <td>
+                    <span class="view-layer">{{beingname}}</span>
+                    <span class="edit-layer hidden">
+                        {{beingname}}
+                    </span>
+                </td>
+                <td>
+                    <span class="view-layer">{{factionname}}</span>
+                    <span class="edit-layer hidden">
+                        <select class="form-control faction" name="allegiance_factionid">
+                            {{#each ../faction}}
+                                <option value="{{factionid}}" {{isSelected factionid ../factionid}}>
+                                    {{name}}
+                                </option>
+                            {{/each}}
+                        </select>
+                    </span>
+                </td>
+                <td>
+                    <span class="view-layer">
+                        <button class="btn btn-sm btn-outline-primary edit" onclick="editAllegiance('{{beingid}}', '{{factionid}}');">Edit</button>
+                    </span>
+                    <span class="edit-layer hidden">
+                        <button class="btn btn-sm btn-outline-primary save" onclick="updateAllegiance('{{beingid}}', '{{factionid}}');">Save</button>
+                    </span>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-outline-danger delete" onclick="deleteAllegiance('{{beingid}}', '{{factionid}}');">Delete</button>
+                </td>
+            </tr>
+        {{/each}}
+    </tbody>
+</table>

@@ -1,0 +1,64 @@
+<div class="card" style="margin: 25px 0;">
+    <h5 class="card-header">Create a new Force Power</h5>
+    <div class="card-body">
+        <form id="form-forcepower" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="power-name">Power Name<span class="required">*</span></label>
+                    <input id="power-name" class="form-control" name="forcepower_name" placeholder="Force Lightning" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="power-lethal">Lethality<span class="required">*</span></label>
+                    <select id="power-lethal" class="form-control" name="forcepower_lethal">
+                        <option value="0">Non-lethal</option>
+                        <option value="1">Lethal</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Force Power</button>
+        </form>
+    </div>
+</div>
+<h3>Force Powers</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Power Name</th>
+            <th scope="col">Lethality</th>
+            <th scope="col"></th> <!-- Edit Btn -->
+            <th scope="col"></th> <!-- Delete Btn -->
+        </tr>
+    </thead>
+    <tbody>
+    {{#each forcepower}}
+        <tr id="forcepower_{{forceid}}">
+            <td>
+                <span class="view-layer">{{name}}</span>
+                <span class="edit-layer hidden">
+                    <input class="form-control" type="text" name="forcepower_name" value="{{name}}" required>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{lethal_string}}</span>
+                <span class="edit-layer hidden">
+                    <select class="form-control fl" name="forcepower_lethal">
+                        <option value="0" {{isSelected 0 lethal}}>Non-lethal</option>
+                        <option value="1" {{isSelected 1 lethal}}>Lethal</option>
+                    </select>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">
+                    <button onclick="editForcePower('{{forceid}}')" class="btn btn-sm btn-outline-primary edit">Edit</button>
+                </span>
+                <span class="edit-layer hidden">
+                    <button onclick="updateForcePower('{{forceid}}')" class="btn btn-sm btn-outline-primary save">Save</button>
+                </span>
+            </td>
+            <td>
+                <button onclick="deleteForcePower('{{forceid}}')" class="btn btn-sm btn-outline-danger">Delete</button>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

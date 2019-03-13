@@ -1,0 +1,132 @@
+# Node Modules #
+################
+node_modules
+
+# Database Information #
+########################
+dbcon.js
+
+# Compiled source #
+###################
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
+*.log
+*.sqlite
+*.log.xml
+/*.sql
+
+# OS generated files #
+######################
+*.swp
+*.un
+*.un~
+.DS_Store
+ehthumbs.db
+Thumbs.db
+_notes
+
+# IDE generated files #
+#######################
+.settings
+.project
+.buildpath
+.idea
+.vscode
+/race legacy.bbprojectd
+
+# Virtual machine related files #
+#######################
+.vagrant
+.vagrantuser
+
+# Composer files #
+##################
+composer.phar
+
+# External libraries #
+######################
+/vendor
+deployer.phar
+
+# Subprojects #
+######################
+/subprojects/*
+!/subprojects/.keep
+
+# SSH keys #
+######################
+/vagrant/dotfiles/.ssh/*
+!/vagrant/dotfiles/.ssh/.keep
+
+# Temporary files #
+######################
+/cache
+/var/working/*
+!/var/working/.keep
+/var/files/*
+!/var/files/.keep
+/var/invoiceprintqueue/*
+!/var/invoiceprintqueue/.keep
+/var/noticeprintqueue/*
+!/var/noticeprintqueue/.keep
+!/var/working/archive
+/var/working/archive/*
+!/var/working/archive/.keep
+!/var/working/notesupload
+/var/working/notesupload/*
+!/var/working/notesupload/.keep
+!/var/working/glub
+
+/var/temp/*
+!/var/temp/.keep
+/var/notesupload/*
+!/var/notesupload/.keep
+!/var/notesupload/temp
+/var/notesupload/temp/*
+!/var/notesupload/temp/.keep
+
+/var/metacdr/*
+!/var/metacdr/.keep
+!/var/metacdr/archive
+/var/metacdr/archive/*
+!/var/metacdr/archive/.keep
+!/var/metacdr/temp
+/var/metacdr/temp/*
+!/var/metacdr/temp/.keep
+
+/var/papertrail/*
+!/var/papertrail/.keep
+
+/var/asterisk/*
+!/var/asterisk/.keep
+/var/voicemail/*
+!/var/voicemail/.keep
+/var/backup/*
+!/var/backup/.keep
+/var/efax/*
+!/var/efax/.keep
+
+# Local develompent utility script #
+###################################
+config.local.inc.php
+/src/pitstop.race.com/util_fix.php
+/src/pitstop.race.com/util_fix_archive.php

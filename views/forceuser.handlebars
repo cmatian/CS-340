@@ -1,0 +1,73 @@
+<div class="card" style="margin: 25px 0;">
+    <h5 class="card-header">Create a new user-to-power combination</h5>
+    <div class="card-body">
+        <form id="forceuser-form" onsubmit="handleSubmit()" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="forceuser-being">Being<span class="required">*</span></label>
+                    <select id="forceuser-being" name="forceuser_beingid" class="form-control">
+                        {{#each being}}
+                            <option value="{{beingid}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="forceuser-power">Power<span class="required">*</span></label>
+                    <select id="forceuser-power" name="forceuser_forceid" class="form-control">
+                        {{#each forcepower}}
+                            <option value="{{forceid}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Assign Power</button>
+        </form>
+    </div>
+</div>
+
+<h3>Assigned Powers</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Being</th>
+            <th scope="col">Power</th>
+            <th scope="col"></th> <!-- Edit Btn -->
+            <th scope="col"></th> <!-- Delete Btn -->
+        </tr>
+    </thead>
+    <tbody>
+    {{#each forceuser}}
+        <tr id="{{beingid}}{{forceid}}" data-being="{{beingid}}" data-forcepower="{{forceid}}">
+            <td>
+                <span class="view-layer">{{beingname}}</span>
+                <span class="edit-layer hidden">
+                    {{beingname}}
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{forcename}}</span>
+                <span class="edit-layer hidden">
+                    <select class="form-control forcepower" name="forceuser_forceid">
+                    {{#each ../forcepower}}
+                        <option value="{{forceid}}" {{isSelected forceid ../forceid}}>
+                            {{name}}
+                        </option>
+                    {{/each}}
+                    </select>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">
+                    <button class="btn btn-sm btn-outline-primary edit" onclick="editForceUser('{{beingid}}', '{{forceid}}');">Edit</button>
+                </span>
+                <span class="edit-layer hidden">
+                    <button class="btn btn-sm btn-outline-primary save" onclick="updateForceUser('{{beingid}}', '{{forceid}}');">Save</button>
+                </span>
+            </td>
+            <td>
+                <button class="btn btn-sm btn-outline-danger delete" onclick="deleteForceUser('{{beingid}}', '{{forceid}}');">Delete</button>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>

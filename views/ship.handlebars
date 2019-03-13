@@ -1,0 +1,106 @@
+<div class="card" style="margin: 25px 0;">
+    <h5 class="card-header">Create a new Ship</h5>
+    <div class="card-body">
+        <form id="form-ship" method="post">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ship-name">Ship Nickname</label>
+                    <input id="ship-name" class="form-control" name="ship_name" type="text" placeholder="Millenium Falcon" maxlength="100">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="ship-model">Ship Model<span class="required">*</span></label>
+                    <input id="ship-model" class="form-control" name="ship_model" type="text" placeholder="YT-1300F" maxlength="100" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="ship-make">Ship Make<span class="required">*</span></label>
+                    <input id="ship-make" class="form-control" name="ship_make" type="text" placeholder="Corellian Engineering Corporation" maxlength="100" required>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="ship-captain">Ship Captain</label>
+                    <select id="ship-captain" class="form-control" name="ship_captain">
+                        <option value="NULL" selected>Unassigned</option>
+                        {{#each being}}
+                            <option value="{{beingid}}">{{name}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="ship-capacity">Ship Capacity<span class="required">*</span></label>
+                    <input id="ship-capacity" class="form-control" name="ship_capacity" type="number" placeholder="25" required/>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Ship</button>
+        </form>
+    </div>
+</div>
+
+<h3>Ships:</h3>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Model</th>
+            <th scope="col">Make</th>
+            <th scope="col">Captain</th>
+            <th scope="col">Capacity</th>
+            <th scope="col"></th> <!-- Edit Btn -->
+            <th scope="col"></th> <!-- Delete Btn -->
+        </tr>
+    </thead>
+    <tbody>
+    {{#each ship}}
+        <tr id="ship_{{shipid}}" data-beingid="{{shipid}}">
+            <td>
+                <span class="view-layer">{{name}}</span>
+                <span class="edit-layer hidden">
+                    <input class="form-control" type="text" name="ship_name" value="{{name}}">
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{model}}</span>
+                <span class="edit-layer hidden">
+                    <input class="form-control" type="text" name="ship_model" value="{{model}}" required>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{make}}</span>
+                <span class="edit-layer hidden">
+                    <input class="form-control" type="text" name="ship_make" value="{{make}}" required>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{captain_string}}</span>
+                <span class="edit-layer hidden">
+                    <select class="form-control pl" name="ship_captain">
+                        <option value="NULL">Unassigned</option>
+                        {{#each ../being}}
+                        <option value='{{beingid}}' {{isSelected beingid ../captain}}>
+                            {{name}}
+                        </option>
+                        {{/each}}
+                    </select>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">{{capacity}}</span>
+                <span class="edit-layer hidden">
+                    <input class="form-control" type="text" name="ship_capacity" value="{{capacity}}" required>
+                </span>
+            </td>
+            <td>
+                <span class="view-layer">
+                    <button onclick="editShip('{{shipid}}')" class="btn btn-sm btn-outline-primary edit">Edit</button>
+                </span>
+                <span class="edit-layer hidden">
+                    <button onclick="updateShip('{{shipid}}')" class="btn btn-sm btn-outline-primary save">Save</button>
+                </span>
+            </td>
+            <td>
+                <button onclick="deleteShip('{{shipid}}')" class="btn btn-sm btn-outline-danger">Delete</button>
+            </td>
+        </tr>
+    {{/each}}
+    </tbody>
+</table>
