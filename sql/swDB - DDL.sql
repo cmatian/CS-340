@@ -59,28 +59,28 @@ CREATE TABLE SHIP(
 );
 
 INSERT INTO FACTION (name, numMembers)
-VALUES ('Sith', '700'),
-  ('Jedi', '500'),
-  ('Galactic Empire', '10,000,000'),
-  ('Rebel Alliance', '1,700,000'),
-  ('Local Governments', '15,000,000,000,000'),
-  ('Unaffiliated', '20,000,000,000'),
-  ('Separatist Alliance', '0');
+VALUES ('Sith', 700),
+  ('Jedi', 500),
+  ('Galactic Empire', 10000000),
+  ('Rebel Alliance', 1700000),
+  ('Local Governments', 15000000000000),
+  ('Unaffiliated', 20000000000),
+  ('Separatist Alliance', 0);
 
 INSERT INTO PLANET(name, population, owner)
-VALUES  ('Tatooine', '1,000,000,000', 5),
-  ('Coruscant', '1,000,000,000,000', 3),
-  ('Hoth', '802,212,741', 4),
-  ('Bespin', '6,000,000', 3),
-  ('Kashyyyk', '56,000,000', 4),
-  ('Tython', '5,454,433', 2),
-  ('Korriban', '1,353,362', 1),
-  ('Corellia', '5,959,774,052', 3),
-  ('Naboo', '200,256,132', 4),
-  ('Serenno', '22,454,289',5),
-  ('Kamino', '5,980,150', 5),
+VALUES  ('Tatooine', 1000000000, 5),
+  ('Coruscant', 1000000000000, 3),
+  ('Hoth', 802212741, 4),
+  ('Bespin', 6000000, 3),
+  ('Kashyyyk', 56000000, 4),
+  ('Tython', 5454433, 2),
+  ('Korriban', 1353362, 1),
+  ('Corellia', 5959774052, 3),
+  ('Naboo', 200256132, 4),
+  ('Serenno', 22454289,5),
+  ('Kamino', 5980150, 5),
   ('Unknown', 'N/A', 6),
-  ('Chandrila', '1,200,000,000', 3);
+  ('Chandrila', 1200000000, 3);
 
 INSERT INTO BEING(fname, lname, race, homeworld, force_sensitive)
 VALUES  ('Han', 'Solo', 'Human', 8, False),
