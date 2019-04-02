@@ -1,4 +1,4 @@
-# CS-340 - Introduction to Databases - Oregon State University - Winter Term
+# CS-340 - Introduction to Databases - OSU Winter 2019
 
 A MySQL Database Project based on Star Wars Universe
 
